@@ -72,7 +72,4 @@ additional_df = pd.DataFrame(additional_data)
 df = pd.concat([df, additional_df], ignore_index=True)
 
 # Create and add all created rows in a csv file
-df.to_csv('../../Dashboard/master_database.csv', index=False)
-
-# Display the first few rows of the DataFrame
-print(df.head())
+df.to_csv('../../Dashboard/master_database.csv', sep=';', index=False)
