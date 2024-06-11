@@ -65,11 +65,14 @@ def generate_synthetic_data(num_rows):
 
 
 # Generate 5000 new rows
-additional_data = generate_synthetic_data(5000)
+additional_data = generate_synthetic_data(5)
 
 # Convert to DataFrame and append to existing data
 additional_df = pd.DataFrame(additional_data)
 df = pd.concat([df, additional_df], ignore_index=True)
+
+# Create and add all created rows in a csv file
+df.to_csv('../../Dashboard/master_database.csv', index=False)
 
 # Display the first few rows of the DataFrame
 print(df.head())
