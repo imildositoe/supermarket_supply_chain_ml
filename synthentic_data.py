@@ -1,16 +1,13 @@
 import datetime
-
 import pandas as pd
-import numpy as np
 from faker import Faker
 import random
 
 # Initialize Faker for generating random data
 fake = Faker()
-data = []
 
 # Create a DataFrame
-df = pd.DataFrame(data)
+df = pd.DataFrame()
 
 
 # Define function to generate synthetic data
@@ -67,7 +64,7 @@ def generate_synthetic_data(num_rows):
     return synthetic_data
 
 
-# Generate 1000 additional rows
+# Generate 5000 new rows
 additional_data = generate_synthetic_data(5000)
 
 # Convert to DataFrame and append to existing data
