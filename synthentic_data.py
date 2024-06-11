@@ -1,3 +1,5 @@
+import datetime
+
 import pandas as pd
 import numpy as np
 from faker import Faker
@@ -70,7 +72,7 @@ def generate_synthetic_data(num_rows):
         unit_cost = round(random.uniform(0.5, 5.0), 2)
         shelf_life = random.randint(2, 10)
         transaction_id = fake.unique.random_number(digits=4)
-        date = fake.date_between(start_date='2024-04-01', end_date='2024-04-30')
+        date = fake.date_between(start_date=datetime.date(2018, 1, 1))
         quantity_sold = random.randint(10, 200)
         sales_amount = round(quantity_sold * unit_cost, 2)
         forecasted_demand = quantity_sold + random.randint(-10, 20)
