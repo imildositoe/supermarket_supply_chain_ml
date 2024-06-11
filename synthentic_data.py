@@ -14,11 +14,31 @@ df = pd.DataFrame()
 def generate_synthetic_data(num_rows):
     synthetic_data = []
     for i in range(num_rows):
-        store_id = random.randint(1, 100)  # change here to have 100 unique stores
-        store_name = f"Store {chr(64 + store_id)}"
-        country = faker.country()  # this must have maximum 10 countries
+        store_id = random.randint(1, 100)
+        store_name = f"Store {store_id}"
+        country_index = random.randint(0, 9)
+        country = ["Germany", "Austria", "Switzerland", "Poland", "Czech Republic", "France", "Belgium", "Netherlands",
+                   "Denmark", "Luxembourg"][country_index]
         address = faker.address()
-        region = faker.state()
+        region = [
+            random.choice(["Bavaria", "Baden-Württemberg", "North Rhine-Westphalia", "Hesse", "Lower Saxony", "Saxony",
+                           "Berlin", "Hamburg", "Bremen", "Thuringia"]),
+            random.choice(["Vienna", "Tyrol", "Salzburg", "Upper Austria", "Lower Austria", "Styria", "Carinthia",
+                           "Burgenland", "Vorarlberg"]),
+            random.choice(["Zurich", "Geneva", "Basel", "Bern", "Vaud", "Lucerne", "Aargau", "Ticino", "St. Gallen"]),
+            random.choice(["Mazovia", "Silesia", "Lesser Poland", "Pomerania", "Lower Silesia", "Greater Poland",
+                           "Lodz", "Subcarpathia", "Podlaskie"]),
+            random.choice(["Prague", "Central Bohemian", "South Moravian", "Moravian-Silesian", "Olomouc", "Pardubice",
+                           "Hradec Králové", "South Bohemian", "Vysočina"]),
+            random.choice(["Île-de-France", "Provence-Alpes-Côte d'Azur", "Occitanie", "Nouvelle-Aquitaine",
+                           "Grand Est", "Hauts-de-France", "Auvergne-Rhône-Alpes", "Brittany", "Normandy"]),
+            random.choice(["Flanders", "Wallonia", "Brussels-Capital"]),
+            random.choice(["North Holland", "South Holland", "Utrecht", "Gelderland", "North Brabant", "Overijssel",
+                           "Limburg", "Groningen", "Friesland"]),
+            random.choice(["Capital Region", "Central Denmark Region", "North Denmark Region",
+                           "Region of Southern Denmark", "Region Zealand"]),
+            random.choice(["Diekirch", "Grevenmacher", "Luxembourg"])
+        ][country_index]
         product_id = random.randint(101, 110)
         product_index = random.randint(0, 7)
         product_name = [
