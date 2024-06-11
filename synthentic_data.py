@@ -1,16 +1,12 @@
 import datetime
-
-import faker_food
 import pandas as pd
 from faker import Faker
 import random
-from faker_food import FoodProvider
 
 # Initialization of Faker object to generate random data fake data
 # Initialization of the Dataframe object to store the data
 faker = Faker()
 df = pd.DataFrame()
-fake_food = FoodProvider_
 
 
 # This function is responsible in generating the synthetic data
@@ -18,9 +14,9 @@ fake_food = FoodProvider_
 def generate_synthetic_data(num_rows):
     synthetic_data = []
     for i in range(num_rows):
-        store_id = random.randint(1, 100) # change here to have 100 unique stores
+        store_id = random.randint(1, 100)  # change here to have 100 unique stores
         store_name = f"Store {chr(64 + store_id)}"
-        country = faker.country() # this must have maximum 10 countries
+        country = faker.country()  # this must have maximum 10 countries
         address = faker.address()
         region = faker.state()
         product_id = random.randint(101, 110)
