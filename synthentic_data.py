@@ -1,12 +1,16 @@
 import datetime
+
+import faker_food
 import pandas as pd
 from faker import Faker
 import random
+from faker_food import FoodProvider
 
 # Initialization of Faker object to generate random data fake data
 # Initialization of the Dataframe object to store the data
 faker = Faker()
 df = pd.DataFrame()
+fake_food = FoodProvider_
 
 
 # This function is responsible in generating the synthetic data
@@ -14,15 +18,32 @@ df = pd.DataFrame()
 def generate_synthetic_data(num_rows):
     synthetic_data = []
     for i in range(num_rows):
-        store_id = random.randint(1, 10)
+        store_id = random.randint(1, 100) # change here to have 100 unique stores
         store_name = f"Store {chr(64 + store_id)}"
-        country = faker.country()
+        country = faker.country() # this must have maximum 10 countries
         address = faker.address()
         region = faker.state()
         product_id = random.randint(101, 110)
-        product_name = faker.word()
+        product_name = random.choice([
+            random.choice(["Apple", "Banana", "Carrot", "Lettuce", "Tomato", "Potato", "Orange", "Strawberry", "Grape",
+                           "Peppers"]),
+            random.choice(["Roses", "Tulips", "Daisies", "Lilies", "Sunflowers", "Orchids", "Carnations",
+                           "Chrysanthemums", "Peonies", "Hydrangeas"]),
+            random.choice(["Milk", "Cheese", "Yogurt", "Butter", "Cream", "Ice Cream", "Sour Cream", "Cottage Cheese",
+                           "Eggs", "Buttermilk"]),
+            random.choice(["Chicken", "Beef", "Pork", "Turkey", "Lamb", "Sausage", "Bacon", "Ham", "Ground Beef",
+                           "Steak"]),
+            random.choice(["Frozen Vegetables", "Frozen Fruits", "Frozen Pizza", "Frozen Dinners", "Ice Cream",
+                           "Frozen Fish", "Frozen Chicken", "Frozen Beef", "Frozen Sausages", "Frozen Desserts"]),
+            random.choice(["Soda", "Juice", "Water", "Milk", "Coffee", "Tea", "Wine", "Beer", "Energy Drinks",
+                           "Smoothies"]),
+            random.choice(["Paper Towels", "Toilet Paper", "Laundry Detergent", "Dish Soap", "Cleaning Supplies",
+                           "Trash Bags", "Light Bulbs", "Batteries", "Air Fresheners", "Disinfectant Wipes"]),
+            random.choice(["Bread", "Bagels", "Muffins", "Cakes", "Cookies", "Croissants", "Donuts", "Pies", "Buns",
+                           "Pastries"])
+        ])
         category = random.choice(
-            ["Fresh Produce", "Dairy", "Meat", "Frozen Food", "Drinks", "Household Items", "Bakery"])
+            ["Fresh Produce", "Flowers", "Dairy", "Meat", "Frozen Food", "Drinks", "Household Items", "Bakery"])
         supplier_id = random.randint(201, 210)
         unit_cost = round(random.uniform(0.5, 5.0), 2)
         shelf_life = random.randint(2, 10)
