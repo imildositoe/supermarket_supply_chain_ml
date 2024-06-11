@@ -20,7 +20,8 @@ def generate_synthetic_data(num_rows):
         address = faker.address()
         region = faker.state()
         product_id = random.randint(101, 110)
-        product_name = random.choice([
+        product_index = random.randint(0, 7)
+        product_name = [
             random.choice(["Apple", "Banana", "Carrot", "Lettuce", "Tomato", "Potato", "Orange", "Strawberry", "Grape",
                            "Peppers"]),
             random.choice(["Roses", "Tulips", "Daisies", "Lilies", "Sunflowers", "Orchids", "Carnations",
@@ -37,9 +38,10 @@ def generate_synthetic_data(num_rows):
                            "Trash Bags", "Light Bulbs", "Batteries", "Air Fresheners", "Disinfectant Wipes"]),
             random.choice(["Bread", "Bagels", "Muffins", "Cakes", "Cookies", "Croissants", "Donuts", "Pies", "Buns",
                            "Pastries"])
-        ])
-        category = random.choice(
-            ["Fresh Produce", "Flowers", "Dairy", "Meat", "Frozen Food", "Drinks", "Household Items", "Bakery"])
+        ][product_index]
+        category = [
+            "Fresh Produce", "Flowers", "Dairy", "Meat", "Frozen Food", "Drinks", "Household Items",
+            "Bakery"][product_index]
         supplier_id = random.randint(201, 210)
         unit_cost = round(random.uniform(0.5, 5.0), 2)
         shelf_life = random.randint(2, 10)
