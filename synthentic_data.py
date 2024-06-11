@@ -3,31 +3,31 @@ import pandas as pd
 from faker import Faker
 import random
 
-# Initialize Faker for generating random data
-fake = Faker()
-
-# Create a DataFrame
+# Initialization of Faker object to generate random data fake data
+# Initialization of the Dataframe object to store the data
+faker = Faker()
 df = pd.DataFrame()
 
 
-# Define function to generate synthetic data
+# This function is responsible in generating the synthetic data
+# Parameter num_rows in the number of rows needed to be generated
 def generate_synthetic_data(num_rows):
     synthetic_data = []
     for i in range(num_rows):
         store_id = random.randint(1, 10)
         store_name = f"Store {chr(64 + store_id)}"
-        country = fake.country()
-        address = fake.address()
-        region = fake.state()
+        country = faker.country()
+        address = faker.address()
+        region = faker.state()
         product_id = random.randint(101, 110)
-        product_name = fake.word()
+        product_name = faker.word()
         category = random.choice(
             ["Fresh Produce", "Dairy", "Meat", "Frozen Food", "Drinks", "Household Items", "Bakery"])
         supplier_id = random.randint(201, 210)
         unit_cost = round(random.uniform(0.5, 5.0), 2)
         shelf_life = random.randint(2, 10)
-        transaction_id = fake.unique.random_number(digits=7)
-        date = fake.date_between(start_date=datetime.date(2018, 1, 1))
+        transaction_id = faker.unique.random_number(digits=7)
+        date = faker.date_between(start_date=datetime.date(2018, 1, 1))
         quantity_sold = random.randint(10, 200)
         sales_amount = round(quantity_sold * unit_cost, 2)
         forecasted_demand = quantity_sold + random.randint(-10, 20)
@@ -35,7 +35,7 @@ def generate_synthetic_data(num_rows):
         closing_inventory = opening_inventory - quantity_sold if opening_inventory > quantity_sold else random.randint(
             0, 50)
         days_of_inventory = random.randint(2, 7)
-        supplier_name = fake.company()
+        supplier_name = faker.company()
         on_time_delivery_rate = round(random.uniform(80, 100), 1)
         quality_rating = round(random.uniform(3.5, 5.0), 1)
         order_accuracy_rate = round(random.uniform(85, 100), 1)
@@ -46,6 +46,7 @@ def generate_synthetic_data(num_rows):
         advertisement_cost = random.randint(50, 200)
         click_through_rate = round(random.uniform(1.0, 5.0), 1)
 
+        # Appending each fake created row into the synthetic_data array
         synthetic_data.append({
             "ID": i + 1, "Store ID": store_id, "Store Name": store_name, "Country": country, "Address": address,
             "Region": region, "Product ID": product_id, "Product Name": product_name, "Category": category,
@@ -64,12 +65,11 @@ def generate_synthetic_data(num_rows):
     return synthetic_data
 
 
-# Generate 5000 new rows
+# Calling the function to generate the rows specifying the quantity needed
+# Appending the generated rows into the existing dataframe
 additional_data = generate_synthetic_data(10000)
-
-# Convert to DataFrame and append to existing data
 additional_df = pd.DataFrame(additional_data)
 df = pd.concat([df, additional_df], ignore_index=True)
 
-# Create and add all created rows in a csv file
+# Create and add all created rows in a csv file and store in the specified relative path
 df.to_csv('../../Dashboard/master_database.csv', sep=';', index=False)
