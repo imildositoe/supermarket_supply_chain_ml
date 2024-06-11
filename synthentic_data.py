@@ -26,7 +26,7 @@ def generate_synthetic_data(num_rows):
         supplier_id = random.randint(201, 210)
         unit_cost = round(random.uniform(0.5, 5.0), 2)
         shelf_life = random.randint(2, 10)
-        transaction_id = fake.unique.random_number(digits=4)
+        transaction_id = fake.unique.random_number(digits=7)
         date = fake.date_between(start_date=datetime.date(2018, 1, 1))
         quantity_sold = random.randint(10, 200)
         sales_amount = round(quantity_sold * unit_cost, 2)
@@ -65,7 +65,7 @@ def generate_synthetic_data(num_rows):
 
 
 # Generate 5000 new rows
-additional_data = generate_synthetic_data(5)
+additional_data = generate_synthetic_data(10000)
 
 # Convert to DataFrame and append to existing data
 additional_df = pd.DataFrame(additional_data)
